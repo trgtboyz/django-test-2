@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container row">
+    {% for recipe in recipes%}
+    <div class="card col-md-6 col-lg-6" style="">
+  <img class="card-img-top img-thumbnail" src="{{recipe.imageURL}}" alt="{{recipe.name}}">
+  <div class="card-body">
+    <h5 class="card-title">{{recipe.name}}</h5>
+    <p class="card-text">
+    	<div class="col-md-9 col-lg-9 table-responsive-sm">
+						<table class="table">
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Name</th>
+									<th scope="col">Quantity</th>
+									<th scope="col">Type</th>
+								</tr>
+							</thead>
+							<tbody>
+              {% for ing in recipe.ingredients %}
+
+								<tr>
+									<th scope="row">{{forloop.counter}}</th>
+									<td>{{ing.name}}</td>
+									<td>{{ing.quantity}}</td>
+									<td>{{ing.type}}</td>
+								</tr>
+              {% endfor %}
+
+							</tbody>
+						</table>
+                <div class="row">
+					<div class="col-md-12 col-lg-12">
+						<ul>
+              {% for step in recipe.steps %}
+
+							<li>
+       	{{step}}
+       </li>
+              {% endfor %}
+
+						</ul>
+					</div>
+				</div>
+      </div>
+    </p>
+  </div>
+</div>
+    <hr>
+    {% endfor %}
+    	</div>
+
+{% endblock content %}
